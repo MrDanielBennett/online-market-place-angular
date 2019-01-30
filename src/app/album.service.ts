@@ -21,12 +21,17 @@ export class AlbumService {
 
   getAlbumById(albumId: string) {
     return this.database.object('albums/' + albumId);
+  }
+  updateAlbum(localUpdatedAlbum){
+    let albumEntryInFirebase = this.getAlbumById(localUpdatedAlbum.$key);
+      albumEntryInFirebase.update({title: localUpdatedAlbum.title,
+                                   artist: localUpdatedAlbum.artist,
+                                   description: localUpdatedAlbum.description});
+  }
 
-    // for (let i = 0; i <= ALBUMS.length - 1; i++){
-    //   if (ALBUMS[i].id === albumId) {
-    //     return ALBUMS[i];
-    //   }
-    // }
+  deleteAlbum(localAlbumToDelete) {
+    let albumEntryInFirebase = this.getAlbumById(localAlbumToDelete.$key);
+    albumEntryInFirebase.remove();
   }
 
 }

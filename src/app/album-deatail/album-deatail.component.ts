@@ -15,12 +15,12 @@ import { FirebaseObjectObservable } from 'angularfire2/database';
 
 export class AlbumDeatailComponent implements OnInit {
   albumId: string;
-  albumToDisplay;
+  albumToDisplay: Album;
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private ablumService: AlbumService
+    private albumService: AlbumService
   ) {}
 
 
@@ -28,7 +28,14 @@ export class AlbumDeatailComponent implements OnInit {
     this.route.params.forEach((urlParameters) => {
       this.albumId = urlParameters['id'];
     });
-    this.albumToDisplay = this.ablumService.getAlbumById(this.albumId);
+
+    this.albumService.getAlbumById(this.albumId).subscribe(dataLastEmittedFromObserver => {
+      this.albumToDisplay = new Album(dataLastEmittedFromObserver.title,
+                                      dataLastEmittedFromObserver.artist,
+                                      dataLastEmittedFromObserver.description);
+
+    console.log(this.albumToDisplay);
+    });
   }
 
 }
