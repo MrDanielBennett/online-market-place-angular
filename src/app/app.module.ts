@@ -13,6 +13,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AdminComponent } from './admin/admin.component';
 import { EditAlbumComponent } from './edit-album/edit-album.component';
+import { MarsRoverComponent } from './mars-rover/mars-rover.component';
+import { RoverFormComponent } from './rover-form/rover-form.component';
+import { PhotosListComponent } from './photos-list/photos-list.component';
 
 export const firebaseConfig = {
   apiKey: masterFirebaseConfig.apiKey,
@@ -29,7 +32,10 @@ export const firebaseConfig = {
     MarketplaceComponent,
     AlbumDeatailComponent,
     AdminComponent,
-    EditAlbumComponent
+    EditAlbumComponent,
+    MarsRoverComponent,
+    RoverFormComponent,
+    PhotosListComponent
   ],
   imports: [
     BrowserModule,
