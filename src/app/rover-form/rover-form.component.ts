@@ -11,11 +11,17 @@ import { MarsRoverApiPhotosService } from '../mars-rover-api-photos.service';
 
 export class RoverFormComponent {
   photos: any[]=null;
+  noPhotos: boolean=false;
+
+
   constructor(private marsRoverPhotosService: MarsRoverApiPhotosService) { }
 
   getRoverImages(date: string, camera: string) {
+    this.photos=null;
     this.marsRoverPhotosService.getByDateAndCamera(date, camera).subscribe(response => {
-      this.photos = response.json();
+      if(response.json().photos.length > 0) {
+        this.photos = response.json();
+      }
     });
   }
 

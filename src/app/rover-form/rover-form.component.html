@@ -18,7 +18,10 @@
   <button (click)="getRoverImages(roverDate.value, roverCamera.value); roverDate.value=''; roverCamera.value=''">Get Photos</button>
 </form>
 
-
 <div *ngIf="photos">
   <app-photos-list [childPhotos]="photos"></app-photos-list>
+</div>
+
+<div *ngIf="photos===null">
+    <h3>There were no photos taken on {{roverDate.value}} by the {{roverCamera.value}} camera.</h3>
 </div>
